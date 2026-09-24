@@ -1,0 +1,44 @@
+{
+  "tool": "aegis",
+  "target": "http://127.0.0.1:46713/page",
+  "points_tested": 2,
+  "findings_count": 3,
+  "findings": [
+    {
+      "type": "sqli",
+      "technique": "error-based",
+      "severity": "High",
+      "method": "GET",
+      "url": "http://127.0.0.1:46713/sqli_error",
+      "parameter": "q",
+      "payload": "'",
+      "evasion": null,
+      "dbms": "MySQL",
+      "evidence": "Warning: mysql_fetch_array(): You have an error in your SQL syntax near '''"
+    },
+    {
+      "type": "xss",
+      "technique": "reflected",
+      "severity": "High",
+      "method": "GET",
+      "url": "http://127.0.0.1:46713/sqli_error",
+      "parameter": "q",
+      "payload": "<script>aegisb44e42</script>",
+      "evasion": null,
+      "context": "html",
+      "evidence": "<h1>Results for <script>aegisb44e42</script></h1>"
+    },
+    {
+      "type": "xss",
+      "technique": "reflected",
+      "severity": "High",
+      "method": "GET",
+      "url": "http://127.0.0.1:46713/xss",
+      "parameter": "q",
+      "payload": "<script>aegis11f21b</script>",
+      "evasion": null,
+      "context": "html",
+      "evidence": "<html><body><p>You searched for: <script>aegis11f21b</script></p></body></html>"
+    }
+  ]
+}
