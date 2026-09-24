@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Aegis report — http://127.0.0.1:46713/page</title>
+<style>
+body{font-family:-apple-system,Helvetica,Arial,sans-serif;background:#0b0e14;color:#e6e9f0;margin:0;padding:40px}
+h1{font-size:28px} .dim{color:#8b93a7;font-size:12px}
+table{width:100%;border-collapse:collapse;margin-top:24px}
+th,td{text-align:left;padding:12px;border-bottom:1px solid #1c2230;vertical-align:top;font-size:13px}
+th{color:#8b93a7;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+code{background:#161c29;padding:2px 6px;border-radius:6px;font-size:12px;word-break:break-all}
+.sev{color:#0b0e14;font-weight:700;font-size:11px;padding:3px 10px;border-radius:20px}
+.clean{text-align:center;padding:40px;color:#30d158;font-size:16px}
+.summary{display:flex;gap:16px;margin:20px 0}
+.card{background:#121724;border:1px solid #1c2230;border-radius:12px;padding:16px 24px}
+.card b{font-size:24px;display:block}
+.card span{color:#8b93a7;font-size:12px}
+.warn{background:#2a1a08;border:1px solid #7a4a12;color:#ffb86b;border-radius:12px;padding:12px 18px;font-size:13px;margin-top:24px}
+</style></head><body>
+<h1>🛡️ Aegis report</h1>
+<p class="dim">Target: <code>http://127.0.0.1:46713/page</code></p>
+<div class="summary">
+<div class="card"><b>3</b><span>findings</span></div>
+<div class="card"><b>2</b><span>points tested</span></div>
+<div class="card"><b>1</b><span>SQLi</span></div>
+<div class="card"><b>2</b><span>XSS</span></div>
+</div>
+<table><tr><th>Severity</th><th>Type</th><th>Location</th><th>Payload</th><th>Evidence</th></tr>
+<tr><td><span class='sev' style='background:#ff9f0a'>High</span></td><td><b>SQLI</b><br><span class='dim'>error-based</span></td><td><code>GET http://127.0.0.1:46713/sqli_error</code><br><span class='dim'>param: <code>q</code></span></td><td><code>&#x27;</code><br><span class='dim'>dbms: MySQL</span></td><td class='ev'><code>Warning: mysql_fetch_array(): You have an error in your SQL syntax near &#x27;&#x27;&#x27;</code></td></tr>
+<tr><td><span class='sev' style='background:#ff9f0a'>High</span></td><td><b>XSS</b><br><span class='dim'>reflected</span></td><td><code>GET http://127.0.0.1:46713/sqli_error</code><br><span class='dim'>param: <code>q</code></span></td><td><code>&lt;script&gt;aegisb44e42&lt;/script&gt;</code><br><span class='dim'>context: html</span></td><td class='ev'><code>&lt;h1&gt;Results for &lt;script&gt;aegisb44e42&lt;/script&gt;&lt;/h1&gt;</code></td></tr>
+<tr><td><span class='sev' style='background:#ff9f0a'>High</span></td><td><b>XSS</b><br><span class='dim'>reflected</span></td><td><code>GET http://127.0.0.1:46713/xss</code><br><span class='dim'>param: <code>q</code></span></td><td><code>&lt;script&gt;aegis11f21b&lt;/script&gt;</code><br><span class='dim'>context: html</span></td><td class='ev'><code>&lt;html&gt;&lt;body&gt;&lt;p&gt;You searched for: &lt;script&gt;aegis11f21b&lt;/script&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</code></td></tr></table>
+<div class="warn">⚠️ For authorized testing only. Scan systems you own or have
+written permission to test. Findings should be verified manually before disclosure.</div>
+</body></html>
